@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ namespace DotNetCoreWebApp
     {
         public static void Main(string[] args)
         {
+             //WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
             CreateHostBuilder(args).Build().Run();
         }
 

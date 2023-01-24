@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Service;
+using Service.Register;
+using Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +27,7 @@ namespace DotNetCoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            InitServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,14 @@ namespace DotNetCoreWebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+        public void InitServices(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IJobApplicationService, JobApplicationService>();
+          
+
         }
     }
 }

@@ -1,0 +1,93 @@
+﻿@model Dto.JobApplication.JobClassDto
+
+<div class="wrapper">
+    <div class="">
+        <div class="inner-bg">
+            <section class="content-header">
+                <h1>Job Application</h1>
+                <div class="btn-group pull-right">
+                    <a data-toggle="modal" asp-controller="Login" asp-action="index" asp-route-id="" class="btn btn-primary">
+                        Back <i class="fa fa-undo"></i>
+                    </a>
+                </div>
+            </section>
+            <section class="content">
+                <partial name="_Notification" />
+                <div id="frm-create-donor" class="cmxform donor-form">
+                    <form asp-controller="Setting" asp-action="Index" method="post" novalidate="novalidate" enctype="multipart/form-data" id="foodbanksetting-form">
+                        <div class="row">
+                            <div class="col-sm-12"><h3 class="page-header">Job Application</h3></div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="JobCode" class="col-lg-3 col-sm-3 control-label">Job Code<span class="redtext">*</span></label>
+                                    <div class="col-sm-8">
+                                        <span class="control-fileupload">
+                                            <input asp-for="JobCode" name="LogoImage" id="LogoImage" accept="image/*" type="file">
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Title" class="col-lg-3 col-sm-3 control-label">Title<span class="redtext"></span></label>
+                                    <div class="col-sm-8">
+                                        <span asp-validation-for="Title" class="text-red"></span>
+                                    </div>
+
+                                </div>
+                                <div class="form-group txt-area">
+                                    <label asp-for="MinimumQualification" class="col-sm-3 control-label">Minimum Qualification</label>
+                                    <div class="col-lg-9 col-sm-9">
+                                        <textarea asp-for="MinimumQualification" name="TailoredNotes" maxlength="200" id="TailoredNotes" class="form-control" rows="4" cols="50"></textarea>
+                                        <span asp-validation-for="MinimumQualification" class="text-red"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="SortDescription" class="col-sm-4 control-label">SortDescription<span class="redtext">*</span></label>
+                                    <div class="col-sm-8">
+                                        <span class="control-fileupload">
+                                            <input asp-for="SortDescription" name="SortDescription" id="SortDescription" type="text">
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="LastDate" class="col-sm-4 control-label"><span class="redtext"></span></label>
+                                </div>
+                                  <div id="">
+                                    <table id="grid-requirement" class="table table-bordered table-responsive table-striped table-condensed food-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>S.No</th>
+                                                <th>Job Code</th>
+                                                <th>Title</th>
+                                                <th>Minimum Qualification</th>
+                                                <th>Sort Description</th>
+                                                <th width="15%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                  </div>
+                        </div>
+
+                        <div class="frm-footer">
+                            <a  data-dismiss="modal" id="btn-cancel" class="btn btn-default" type="button">
+                                <i class="fa fa-arrow-circle-left"></i>Cancel
+                            </a>
+                            <button class="btn btn-primary" id="btn-submit" type="submit">
+                                Save
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
