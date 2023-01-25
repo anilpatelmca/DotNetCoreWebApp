@@ -1,18 +1,27 @@
-﻿@model Dto.LoginDto.loginDto
-@{
-    ViewBag.Title = "Login";
-}
+﻿@model Dto.UserDto.UserDto
+    @{
+        ViewBag.Title = "Register";
+    }
 
-<!DOCTYPE html>
 <div class="inner-bg-white">
-    <h1>Welcome to Login Page</h1>
+    <h1>Welcome to Register Page</h1>
     <div class="login-wrap">
         @*<partial name="_Notification" />*@
-        <form id="frmLogin" asp-controller="login" asp-action="index" method="post">
+        <form id="frmLogin" asp-controller="Login" asp-action="Register" method="post">
             <div class="login-form frontend-login">
                 <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-red"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">LastName:</label>
+                    <input autocomplete="off" type="text" asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-red"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email">Email:</label>
+                    <input autocomplete="off" type="text" asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-red"></span>
                 </div>
                 <div class="form-group">
@@ -23,27 +32,23 @@
             </div>
             <div class="login-btn">
                 <div class="btns-right">
-                    <button type="submit" class="btn btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn btn-primary">Register</button>
                     @*<a class="btn btn btn-primary" asp-controller="login" asp-action="index">Logout</a>*@
                 </div>
-                <p>
-                    <i class="fa fa-angle-right"></i>
+                <!--<p>
+                    <i class="fa fa-angle-right"></i>-->
                     @*<a asp-controller="account" asp-action="forgotcredentials" asp-route-id="@((int)CredentialsRequest.UserPassword)" data-toggle="modal" data-target="#modal-forgot-credentials">Forgotten your password?</a>*@
-                </p>
-                <p>
-                    <i class="fa fa-angle-right"></i>
+                <!--</p>-->
+                <!--<p>
+                    <i class="fa fa-angle-right"></i>-->
                     @*<a asp-controller="account" asp-action="forgotcredentials" asp-route-id="@((int)CredentialsRequest.UserId)" data-toggle="modal" data-target="#modal-forgot-credentials">Forgotten your User ID?</a>*@
-                </p>
+                <!--</p>-->
             </div>
         </form>
 
     </div>
     @*<div class="smart-solutions"> Software for Churches and Charities.....</div>*@
 </div>
-@*<partial name="_Modal" model='new Modal { ID = "modal-forgot-credentials", AreaLabeledId = "modal-forgot-credentials-label", Size = ModalSize.Large }' />*@
+    
 
-@*@section scripts{
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="~/Scripts/custom/account/login.js"></script>
-}*@
-
+    

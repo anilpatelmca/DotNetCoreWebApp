@@ -68,6 +68,8 @@ namespace DataInfo.Entities
 
                 entity.Property(e => e.Created).HasColumnType("datetime");
 
+                entity.Property(e => e.Email).HasMaxLength(255);
+
                 entity.Property(e => e.Modifydate)
                     .HasColumnType("datetime")
                     .HasColumnName("modifydate");
@@ -75,12 +77,6 @@ namespace DataInfo.Entities
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(255);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("username");
             });
 
             modelBuilder.Entity<User>(entity =>

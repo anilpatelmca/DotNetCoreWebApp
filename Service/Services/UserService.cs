@@ -2,6 +2,7 @@
 using Service.Register;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Service.Services
@@ -32,7 +33,15 @@ namespace Service.Services
                 repoUser.Update(user);
             }
         }
+        public bool CheckUserExist(string email, string password)
+        {
 
+            var data = repoUser.Query()
+            .Filter(a => a.Email == email && a.Password == password)
+            .Get().ToList();
+
+            return (data != null && data.Count>0);
+        }
         /// <summary>
         /// To delete address
         /// </summary>

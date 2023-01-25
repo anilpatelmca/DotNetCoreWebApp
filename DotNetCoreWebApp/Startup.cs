@@ -1,6 +1,8 @@
+using DataInfo.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +29,7 @@ namespace DotNetCoreWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<MyContextProject>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             InitServices(services);
         }
 
@@ -54,14 +57,15 @@ namespace DotNetCoreWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
         public void InitServices(IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<IJobApplicationService, JobApplicationService>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IJobApplicationService, JobApplicationService>();
           
 
         }

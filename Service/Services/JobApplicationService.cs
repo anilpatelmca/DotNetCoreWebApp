@@ -1,4 +1,7 @@
-﻿using DataInfo.Entities;
+﻿using Core;
+using DataInfo.Entities;
+using FB.Core;
+using LinqKit;
 using Service.Register;
 using System;
 using System.Collections.Generic;
@@ -7,7 +10,7 @@ using System.Text;
 
 namespace Service.Services
 {
-    class JobApplicationService : IJobApplicationService
+   public class JobApplicationService : IJobApplicationService
     {
         private IRepository<JobApplication> repojobapplication;
 
@@ -34,35 +37,33 @@ namespace Service.Services
             }
         }
 
-        /// <summary>
-        /// To delete address
-        /// </summary>
-        /// <param name="id"></param>
+       
         public void Delete(int id)
         {
             repojobapplication.Delete(id);
         }
 
-        //public KeyValuePair<int, List<JobApplication>> GetjobapplicationByid(DataTableServerSide searchModel)
-        //{
-        //    var predicate = PredicateBuilder.True<JobApplication>();
-        //    predicate = CustomPredicate.BuildPredicate<JobApplication>(searchModel, new Type[] { typeof(JobApplication) });
-        //    //predicate = predicate.And(m => m.FoodbankId == foodBankId);
+        public KeyValuePair<int, List<JobApplication>> Getjobapplicationlist(DataTableServerSide searchModel)
+        {
+            var predicate = FB.Core.PredicateBuilder.True<JobApplication>();
+            predicate = CustomPredicate.BuildPredicate<JobApplication>(searchModel, new Type[] { typeof(JobApplication) });
 
-        //    int totalCount;
-        //    int page = searchModel.start == 0 ? 1 : (Convert.ToInt32(Decimal.Floor(Convert.ToDecimal(searchModel.start) / searchModel.length)) + 1);
+            int totalCount;
+            int page = searchModel.start == 0 ? 1 : (Convert.ToInt32(Decimal.Floor(Convert.ToDecimal(searchModel.start) / searchModel.length)) + 1);
 
-        //    var ProfessionList = repojobapplication
-        //    .Query()
-        //    .Filter(predicate)
-        //    .OrderBy(x => x.OrderByDescending(oo => oo.Id)) //for the sorting 
-        //    .CustomOrderBy(u => u.OrderBy(searchModel, new Type[] { typeof(JobApplication) }))
-        //    .GetPage(page, searchModel.length, out totalCount).ToList(); // for the pagination
-        //    KeyValuePair<int, List<JobApplication>> resultResponse = new KeyValuePair<int, List<JobApplication>>(totalCount, ProfessionList);
+            var jobApplications = repojobapplication
+            .Query()
+            .Filter(predicate)
+            .OrderBy(x => x.OrderByDescending(oo => oo.Id)) //for the sorting 
+            //.CustomOrderBy(u => u.OrderBy(searchModel, new Type[] { typeof(JobApplication) }))
+            .GetPage(page, searchModel.length, out totalCount).ToList(); // for the pagination
 
-        //    return resultResponse;
+            KeyValuePair<int, List<JobApplication>> resultResponse = new KeyValuePair<int, List<JobApplication>>(totalCount, jobApplications);
 
-        //}
+            return resultResponse;
+        }
+
+
 
 
 

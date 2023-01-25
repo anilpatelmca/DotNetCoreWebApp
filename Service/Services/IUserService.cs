@@ -12,7 +12,6 @@ namespace Service.Services
         public void Save(User user, bool isNew = true);
 
         public void Delete(int id);
-
-
-   }
+        bool CheckUserExist(string email, string password);
+    }
 }

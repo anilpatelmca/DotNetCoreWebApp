@@ -1,4 +1,5 @@
-﻿using DataInfo.Entities;
+﻿using Core;
+using DataInfo.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Service.Services
         public void Save(JobApplication JobApplication, bool isNew = true);
 
         public void Delete(int id);
-        //public KeyValuePair<int, List<JobApplication>> GetjobapplicationByid(DataTableServerSide searchModel);
+        public KeyValuePair<int, List<JobApplication>> Getjobapplicationlist(DataTableServerSide searchModel);
 
 
 

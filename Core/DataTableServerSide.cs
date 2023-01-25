@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FB.Core
+namespace Core
 {
     public class DataTableServerSide
     {

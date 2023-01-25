@@ -11,8 +11,5 @@ namespace Service
         public Login GetUserById(int id);
         public void Save(Login login, bool isNew = true);
         public void Delete(int id);
-
-
-
     }
 }
